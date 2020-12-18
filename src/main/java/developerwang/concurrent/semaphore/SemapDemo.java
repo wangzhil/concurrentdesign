@@ -1,8 +1,9 @@
 package developerwang.concurrent.semaphore;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class SemapDemo implements Runnable {
 
@@ -21,10 +22,16 @@ public class SemapDemo implements Runnable {
 		
 	}
 	public static void main(String[] args) {
-		ExecutorService exec = Executors.newFixedThreadPool(20);
 		SemapDemo dem = new SemapDemo();
+
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 20, 1000, TimeUnit.MINUTES, new LinkedBlockingDeque<Runnable>(),
+				r -> {
+					Thread t = new Thread(r);
+					t.setName("xxxxxx");
+					return t;
+				},new ThreadPoolExecutor.CallerRunsPolicy());
 		for(int i=0;i<20;i++){
-			exec.submit(dem);
+			threadPoolExecutor.submit(dem);
 		}
 		
 		

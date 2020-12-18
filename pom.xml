@@ -5,6 +5,21 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>concurrentdesign</name>
   <description>my first concurrentdesign</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.openjdk.jol</groupId>
+      <artifactId>jol-core</artifactId>
+      <version>0.9</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
   <build>
     <finalName>ShopPra1</finalName>
     <plugins>
@@ -15,6 +30,7 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
+          <!--suppress UnresolvedMavenProperty -->
           <encoding>${project.build.sourceEncoding}</encoding>
           <compilerArguments>
             <verbose />
